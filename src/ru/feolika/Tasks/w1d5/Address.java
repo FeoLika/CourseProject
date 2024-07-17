@@ -1,11 +1,17 @@
 package ru.feolika.Tasks.w1d5;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
  * Класс, входящий в состав Person
  */
 public class Address implements Serializable {
+    /**
+     * serialVersionUID
+     */
+    @Serial
+    private static final long serialVersionUID = 22321321321321321L;
     /**
      * улица
      */

@@ -1,11 +1,17 @@
 package ru.feolika.Tasks.w1d5;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
  * Класс для тестирования сериализации
  */
 public class Person implements Serializable {
+    /**
+     * serialVersionUID
+     */
+    @Serial
+    private static final long serialVersionUID = 7507618637130823075L;
     /**
      * имя
      */
