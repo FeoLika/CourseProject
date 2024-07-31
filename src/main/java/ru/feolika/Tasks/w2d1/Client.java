@@ -5,10 +5,19 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Класс для общения с сервером
  */
 public class Client {
+
+    /**
+     * Логгер
+     */
+    private static final Logger logger = LogManager.getLogger(Client.class);
+
     /**
      * Устанавливает соединение с сервером по указанному хосту и порту, и
      * отправляет и получает сообщения от сервера. Клиент предлагает пользователю
@@ -26,13 +35,13 @@ public class Client {
             PrintWriter socketWriter = new PrintWriter(serverSocket.getOutputStream(), true);
             BufferedReader socketReader = new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("Enter your name: ");
+            logger.info("Enter your name: ");
             while (!serverSocket.isClosed()) {
                 if (bufferedReader.ready()) {
                     String message = bufferedReader.readLine();
                     socketWriter.println(message);
                     if (message.equals("quit")) {
-                        System.out.println("Disconnecting...");
+                        logger.info("Disconnecting...");
                         bufferedReader.close();
                         socketReader.close();
                         socketWriter.close();
@@ -42,11 +51,11 @@ public class Client {
                 }
                 if (socketReader.ready()) {
                     String message = socketReader.readLine();
-                    System.out.println(message);
+                    logger.info(message);
                 }
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 }

@@ -1,6 +1,14 @@
 package ru.feolika.Tasks.w1d7;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Starter {
+    /**
+     * Логгер
+     */
+    private static final Logger logger = LogManager.getLogger(Starter.class);
+
     public static void main(String[] args) {
         String[] resources = {
                 "https://www.gutenberg.org/files/2701/2701-0.txt",
@@ -18,7 +26,7 @@ public class Starter {
         try {
             resourceReader.getOccurrences(resources, words, res);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 }

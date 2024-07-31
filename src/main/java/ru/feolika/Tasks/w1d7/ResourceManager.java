@@ -1,5 +1,9 @@
 package ru.feolika.Tasks.w1d7;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import ru.feolika.Tasks.w2d1.Client;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -12,6 +16,10 @@ import java.util.concurrent.RejectedExecutionException;
  * Класс для обработки ресурсов
  */
 public class ResourceManager implements Searchable {
+    /**
+     * Логгер
+     */
+    private static final Logger logger = LogManager.getLogger(ResourceManager.class);
     /**
      * Константа - Максимальное количество потоков
      */
@@ -36,7 +44,7 @@ public class ResourceManager implements Searchable {
             }
             ResourceProcessor.clearFile(res);
         } catch (URISyntaxException | IOException e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 
@@ -57,7 +65,7 @@ public class ResourceManager implements Searchable {
             }
             executor.shutdown();
         } catch (NullPointerException | RejectedExecutionException e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 }

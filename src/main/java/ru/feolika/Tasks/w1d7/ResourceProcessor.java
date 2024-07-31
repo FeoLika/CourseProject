@@ -1,5 +1,8 @@
 package ru.feolika.Tasks.w1d7;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
@@ -16,6 +19,10 @@ import java.util.regex.Pattern;
  * класс для обработки ресурса
  */
 public class ResourceProcessor implements Runnable {
+    /**
+     * Логгер
+     */
+    private static final Logger logger = LogManager.getLogger(ResourceProcessor.class);
     /**
      * путь к ресурсу
      */
@@ -126,7 +133,7 @@ public class ResourceProcessor implements Runnable {
                         + String.join("\n", sentences) + "\n\r");
 
             } catch (IOException e) {
-                System.out.println(e.getMessage());
+                logger.error(e.getMessage());
             }
         }
     }

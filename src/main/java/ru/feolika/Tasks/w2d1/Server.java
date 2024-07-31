@@ -1,14 +1,25 @@
 package ru.feolika.Tasks.w2d1;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Сервер
  */
 public class Server {
+
+    /**
+     * Логгер
+     */
+    private static final Logger logger = LogManager.getLogger(Server.class);
     /**
      * Защита от многопоточного доступа
      */
@@ -32,7 +43,7 @@ public class Server {
                 new Thread(clientHandler).start();
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 
